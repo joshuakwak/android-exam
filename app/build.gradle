@@ -1,0 +1,132 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-parcelize'
+}
+apply from: "dependencies.gradle"
+android {
+    namespace 'com.example.myapplication'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        buildConfigField "String", "BASE_APP_URL", DEV_BASE_APP_URL
+        buildConfigField "String", "DATABASE_NAME", DATABASE_NAME
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            manifestPlaceholders = [enableCrashReporting: "false"]
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [enableCrashReporting: "true"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+        buildConfig = true
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation androidXDependencies.activityKTX
+    implementation androidXDependencies.appCompat
+    implementation androidXDependencies.dataBindingCommon
+    implementation androidXDependencies.dataBindingRuntime
+    implementation androidXDependencies.coreKTX
+    implementation androidXDependencies.coreSplashscreen
+    implementation androidXDependencies.lifecycleRuntimeKTX
+    implementation androidXDependencies.lifecycleViewModelKTX
+    implementation androidXDependencies.pagingCommonKTX
+    implementation androidXDependencies.roomKTX
+    implementation androidXDependencies.roomRuntime
+    implementation androidXDependencies.sqllite
+    kapt androidXDependencies.roomCompiler
+
+    // Navigation
+    implementation navigationDependencies.navigationUiKtx
+    implementation navigationDependencies.navigationFragmentKtx
+
+    // Constraint Layout
+    implementation constraintLayoutDependency
+
+    // Google
+    implementation googleDependencies.material
+
+    // Kotlin Coroutines
+    implementation coroutinesDependencies.core
+    implementation coroutinesDependencies.android
+
+    // Dagger - Hilt
+    implementation daggerHiltDependencies.hiltAndroid
+    kapt daggerHiltDependencies.hiltAndroidCompiler
+    kapt daggerHiltDependencies.hiltCompilerKapt
+
+    // Retrofit
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.converterGson
+    implementation retrofitDependencies.converterMoshi
+    implementation retrofitDependencies.adapterRxJava2
+
+    // OkHttp
+    implementation okHttpDependencies.okHttp
+    implementation okHttpDependencies.loggingInterceptor
+
+    // Moshi
+    implementation moshiDependencies.moshi
+    implementation moshiDependencies.moshiKotlin
+    kapt moshiDependencies.moshiKotlinCodeGen
+
+
+    // Timber
+    implementation timberDependency
+
+    // Glide
+    implementation glideDependencies.glide
+    kapt glideDependencies.glideCompiler
+
+    // SwipeRefreshLayout
+    implementation swipeRefreshLayoutDependency
+
+    // Coil
+    implementation coilDependency
+
+    // Tests
+    testImplementation jUnitDependency
+    androidTestImplementation androidXTestDependencies.jUnitExt
+    androidTestImplementation androidXTestDependencies.espresso
+
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screenBackgroundColor">#161D22</color>
+    <color name="mainTextColor">#FFFFFF</color>
+    <color name="mainBackgroundColor">#202E38</color>
+    <color name="mainTextColorDisabled">#B2B2B2</color>
+    <color name="buttonBackgroundColorInverse">#0d314b</color>
+    <color name="buttonBackgroundColor">#d4e7f7</color>
+    <color name="blurColor">#40404040</color>
+</resources>

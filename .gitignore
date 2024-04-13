@@ -53,3 +53,11 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+.idea/.name
+.idea/assetWizardSettings.xml
+.idea/compiler.xml
+.idea/deploymentTargetDropDown.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/kotlinc.xml
+.idea/misc.xml
+.idea/vcs.xml
