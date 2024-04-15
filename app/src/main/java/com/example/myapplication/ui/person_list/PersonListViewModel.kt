@@ -62,8 +62,13 @@ class PersonListViewModel @Inject constructor(
             when (response) {
                 is Response.Success -> {
                     Timber.d(response.data.toString())
-                    _listItems.value = response.data ?: listOf()
-                    _isLoading.value = false
+                    if (response.data.isNullOrEmpty()) {
+                        getPersonList()
+                        _isLoading.value = true
+                    } else {
+                        _listItems.value = response.data
+                        _isLoading.value = false
+                    }
                 }
                 is Response.Error -> {
                     getPersonList()
